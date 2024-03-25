@@ -8,7 +8,7 @@ import time
 chrome_options = webdriver.ChromeOptions()
 chrome_options.add_experimental_option("detach", True)
 
-URL = "https://misbhv.com/pl/en/misbhv-seasonal-sale/men"
+URL = "https://misbhv.com/pl/en/misbhv-archive-sale?gender=148"
 
 driver = webdriver.Chrome(chrome_options)
 driver.get(url=URL)
@@ -44,6 +44,7 @@ n = 0
 
 while True:
     loop_count += 1
+    print("################################################################")
     print(f"Loop number: {loop_count}")
 
     # Scroll
@@ -66,7 +67,7 @@ while True:
             while items_dict.get(item_name):
                 item_name = rename_duplicate(duplicate_name=item_name, items_in_total=len(items_dict))
             n += 1
-            print(f"{n}. {item_name}")
+            # print(f"{n}. {item_name}")
 
 
             # Price:
@@ -105,7 +106,8 @@ items_count = {
     "Items found:": len(items_dict)
 }
 
-print(f"\n{items_count}")
+print("################################################################")
+print(f"\nItems found: {items_count['Items found:']}")
 
 with open("misbhv_items.json", "w") as file:
     json.dump([items_count, items_dict], file, indent=4)
